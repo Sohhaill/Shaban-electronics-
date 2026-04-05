@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery – Shaban Electronics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <style>
+    .gallery-item { transition: opacity 0.4s ease, transform 0.4s ease; }
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+      flex-direction: column; padding: 20px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 80vh; border-radius: 12px; object-fit: contain; }
+    .lightbox-close { position: absolute; top: 20px; right: 28px; font-size: 2.2rem; color: #fff; cursor: pointer; line-height: 1; }
+    .lightbox-caption { color: rgba(255,255,255,0.8); margin-top: 16px; font-size: 0.95rem; text-align: center; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <div class="nav-logo">S</div>
+    <span class="nav-name">Shaban <span>Electronics</span></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="gallery.html" class="active">Gallery</a></li>
+    <li><a href="deals.html">Deals</a></li>
+    <li><a href="help.html">Help</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="theme-btn" onclick="toggleTheme()">🌙</button>
+    <a href="contact.html"><button class="nav-cta">Get Quote</button></a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="gallery.html">Gallery</a><a href="deals.html">Deals</a><a href="help.html">Help</a><a href="contact.html">Contact</a>
+</div>
+
+<div class="page-hero">
+  <span class="section-label">Browse Products</span>
+  <h1>Product Gallery</h1>
+  <p>Explore our wide range of premium home appliances. Filter by category to find what you need.</p>
+</div>
+
+<div class="section">
+  <!-- FILTER BUTTONS -->
+  <div class="gallery-filter fade-in">
+    <button class="filter-btn active" data-filter="all">All Products</button>
+    <button class="filter-btn" data-filter="ac">Air Conditioners</button>
+    <button class="filter-btn" data-filter="fridge">Refrigerators</button>
+    <button class="filter-btn" data-filter="wash">Washing Machines</button>
+    <button class="filter-btn" data-filter="tv">LED TVs</button>
+    <button class="filter-btn" data-filter="kitchen">Kitchen</button>
+    <button class="filter-btn" data-filter="fan">Fans</button>
+  </div>
+
+  <!-- GALLERY GRID -->
+  <div class="gallery-grid">
+    <div class="gallery-item fade-in" data-cat="ac" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=600&q=80" alt="Haier Inverter AC" loading="lazy" />
+      <div class="gallery-overlay">🔍</div>
+      <div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.65);color:#fff;padding:5px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">Haier Inverter AC</div>
+    </div>
+    <div class="gallery-item fade-in" data-cat="fridge" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=600&q=80" alt="Dawlance Refrigerator" loading="lazy" />
+      <div class="gallery-overlay">🔍</div>
+      <div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.65);color:#fff;padding:5px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">Dawlance Refrigerator</div>
+    </div>
+    <div class="gallery-item fade-in" data-cat="wash" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=600&q=80" alt="Samsung Washing Machine" loading="lazy" />
+      <div class="gallery-overlay">🔍</div>
+      <div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.65);color:#fff;padding:5px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">Samsung Front Load</div>
+    </div>
+    <div class="gallery-item fade-in" data-cat="tv" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829e1?w=600&q=80" alt="Samsung Smart TV" loading="lazy" />
+      <div class="gallery-overlay">🔍</div>
+      <div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.65);color:#fff;padding:5px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">Samsung Smart TV</div>
+    </div>
+    <div class="gallery-item fade-in" data-cat="kitchen" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Kitchen Appliances" loading="lazy" />
+      <div class="gallery-overlay">🔍</div>
+      <div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.65);color:#fff;padding:5px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">Kitchen Appliances</div>
+    </div>
+    <div class="gallery-item fade-in" data-cat="fan" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&q=80" alt="Ceiling Fan" loading="lazy" />
+      <div class="gallery-overlay">🔍</div>
+      <div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.65);color:#fff;padding:5px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">Ceiling Fan – GFC</div>
+    </div>
+    <div class="gallery-item fade-in" data-cat="ac" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1527061011665-3652c757a4d4?w=600&q=80" alt="Gree AC" loading="lazy" />
+      <div class="gallery-overlay">🔍</div>
+      <div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.65);color:#fff;padding:5px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">Gree AC 1 Ton</div>
+    </div>
+    <div class="gallery-item fade-in" data-cat="fridge" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80" alt="PEL Refrigerator" loading="lazy" />
+      <div class="gallery-overlay">🔍</div>
+      <div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.65);color:#fff;padding:5px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">PEL Fridge</div>
+    </div>
+    <div class="gallery-item fade-in" data-cat="kitchen" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1585515320310-259814833e62?w=600&q=80" alt="Microwave Oven" loading="lazy" />
+      <div class="gallery-overlay">🔍</div>
+      <div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.65);color:#fff;padding:5px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">Microwave Oven</div>
+    </div>
+    <div class="gallery-item fade-in" data-cat="tv" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1601944179066-29786cb9d32a?w=600&q=80" alt="TCL TV" loading="lazy" />
+      <div class="gallery-overlay">🔍</div>
+      <div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.65);color:#fff;padding:5px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">TCL 4K Smart TV</div>
+    </div>
+    <div class="gallery-item fade-in" data-cat="wash" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Haier Washing Machine" loading="lazy" />
+      <div class="gallery-overlay">🔍</div>
+      <div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.65);color:#fff;padding:5px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">Haier Twin Tub</div>
+    </div>
+    <div class="gallery-item fade-in" data-cat="kitchen" onclick="openLightbox(this)">
+      <img src="https://images.unsplash.com/photo-1556909211-36987daf7b4d?w=600&q=80" alt="Blender" loading="lazy" />
+      <div class="gallery-overlay">🔍</div>
+      <div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.65);color:#fff;padding:5px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">Juicer & Blender</div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightboxImg" src="" alt="" />
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
+<div class="section" style="padding-top:0">
+  <div class="cta-banner fade-in">
+    <h2>Interested in Any Product?</h2>
+    <p>Contact us for pricing, availability, and expert advice tailored to your needs.</p>
+    <a href="contact.html"><button class="btn-white">📞 Get in Touch →</button></a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-brand" style="margin-bottom:14px"><div class="nav-logo">S</div><span class="nav-name">Shaban <span>Electronics</span></span></div>
+      <p>Your trusted partner for home appliances in Rawalpindi.</p>
+      <div class="footer-socials"><a href="#" class="social-btn">f</a><a href="#" class="social-btn">W</a><a href="#" class="social-btn">ig</a></div>
+    </div>
+    <div class="footer-col"><h5>Quick Links</h5><ul><li><a href="../index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="deals.html">Deals</a></li></ul></div>
+    <div class="footer-col"><h5>Categories</h5><ul><li><a href="#">Air Conditioners</a></li><li><a href="#">Refrigerators</a></li><li><a href="#">Washing Machines</a></li><li><a href="#">LED TVs</a></li><li><a href="#">Kitchen Appliances</a></li></ul></div>
+    <div class="footer-col"><h5>Contact</h5><ul><li><a href="#">📍 Rawalpindi, Pakistan</a></li><li><a href="tel:03000000000">📞 03XX-XXXXXXX</a></li><li><a href="contact.html">✉️ Send Message</a></li><li><a href="help.html">❓ Help Center</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2024 Shaban Electronics, Rawalpindi. All rights reserved.</p><p>Owner: Shaban | SmartHome Appliances</p></div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+  function openLightbox(el) {
+    const img = el.querySelector('img');
+    const caption = el.querySelector('[style*="position:absolute"]');
+    document.getElementById('lightboxImg').src = img.src;
+    document.getElementById('lightboxImg').alt = img.alt;
+    document.getElementById('lightboxCaption').textContent = img.alt;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
