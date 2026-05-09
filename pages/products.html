@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products – Shaban Electronics</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f3ef;
+      --bg2: #eceae4;
+      --surface: #ffffff;
+      --border: #dedad2;
+      --text1: #1a1714;
+      --text2: #6b6560;
+      --accent: #d4410a;
+      --accent2: #f26522;
+      --accent-light: #fdf0ea;
+      --radius: 16px;
+      --shadow: 0 4px 24px rgba(26,23,20,0.08);
+      --shadow-hover: 0 12px 40px rgba(26,23,20,0.14);
+    }
+    [data-theme="dark"] {
+      --bg: #141210;
+      --bg2: #1e1b18;
+      --surface: #242018;
+      --border: #332f28;
+      --text1: #f0ede8;
+      --text2: #9e9890;
+      --accent: #f26522;
+      --accent2: #ff8c42;
+      --accent-light: #2a1c10;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text1);
+      min-height: 100vh;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 68px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--accent); color: #fff;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--text1); }
+    .nav-name span { color: var(--accent); }
+    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      color: var(--text2); padding: 6px 14px; border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); background: var(--accent-light); }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .theme-btn {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+      padding: 6px 10px; cursor: pointer; font-size: 1rem; color: var(--text1);
+    }
+    .nav-cta {
+      background: var(--accent); color: #fff; border: none; border-radius: 10px;
+      padding: 8px 18px; font-size: 0.875rem; font-weight: 600;
+      cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent2); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
+    .hamburger span { width: 22px; height: 2px; background: var(--text1); border-radius: 2px; display: block; }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 16px 24px; gap: 4px;
+    }
+    .mobile-menu a {
+      text-decoration: none; font-size: 0.95rem; font-weight: 500;
+      color: var(--text2); padding: 10px 14px; border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--accent); background: var(--accent-light); }
+    .mobile-menu.open { display: flex; }
+    @media (max-width: 900px) {
+      .nav-links, .nav-actions { display: none; }
+      .hamburger { display: flex; }
+      .navbar { padding: 0 20px; }
+    }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: linear-gradient(135deg, var(--text1) 0%, #3d2d1a 100%);
+      color: #fff; text-align: center;
+      padding: 72px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(212,65,10,0.25) 0%, transparent 60%);
+    }
+    .page-hero .section-label {
+      display: inline-block;
+      background: rgba(242,101,34,0.2); color: var(--accent2);
+      border: 1px solid rgba(242,101,34,0.3);
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 16px;
+    }
+    .page-hero h1 {
+      font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800; line-height: 1.1; margin-bottom: 14px;
+      position: relative;
+    }
+    .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.7; position: relative; }
+
+    /* ── FILTERS ── */
+    .filters-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      min-height: 60px;
+    }
+    .filter-label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text2); margin-right: 4px; }
+    .filter-btn {
+      background: none; border: 1px solid var(--border); border-radius: 20px;
+      padding: 6px 16px; font-size: 0.85rem; font-weight: 500; color: var(--text2);
+      cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active {
+      background: var(--accent); border-color: var(--accent);
+      color: #fff;
+    }
+    .search-wrap {
+      margin-left: auto; position: relative;
+    }
+    .search-input {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+      padding: 8px 16px 8px 36px; font-size: 0.875rem; color: var(--text1);
+      font-family: 'DM Sans', sans-serif; outline: none; width: 200px;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--accent); }
+    .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 0.9rem; color: var(--text2); pointer-events: none; }
+    @media (max-width: 700px) { .filters-bar { padding: 12px 16px; } .search-wrap { margin-left: 0; width: 100%; } .search-input { width: 100%; } }
+
+    /* ── PRODUCTS SECTION ── */
+    .section { padding: 48px 40px 80px; max-width: 1300px; margin: 0 auto; }
+    @media (max-width: 700px) { .section { padding: 32px 16px 60px; } }
+
+    .results-count { font-size: 0.875rem; color: var(--text2); margin-bottom: 28px; }
+    .results-count strong { color: var(--text1); }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    /* ── PRODUCT CARD ── */
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+      position: relative;
+      display: flex; flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+    .product-badge {
+      position: absolute; top: 14px; left: 14px; z-index: 2;
+      background: var(--accent); color: #fff;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em;
+      padding: 4px 10px; border-radius: 6px;
+      text-transform: uppercase;
+    }
+    .product-badge.new { background: #0a7a52; }
+    .product-badge.hot { background: #c0392b; }
+    .product-img {
+      width: 100%; aspect-ratio: 4/3; overflow: hidden;
+      background: var(--bg2);
+    }
+    .product-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-img img { transform: scale(1.06); }
+    .product-info { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+    .product-category {
+      font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--accent);
+    }
+    .product-name {
+      font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+      color: var(--text1); line-height: 1.35;
+    }
+    .product-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.6; flex: 1; }
+    .product-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
+    .product-tag {
+      font-size: 0.75rem; background: var(--bg2); color: var(--text2);
+      border-radius: 6px; padding: 3px 9px; font-weight: 500;
+    }
+    .product-footer { padding: 16px 20px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .product-price { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--text1); }
+    .product-price span { font-size: 0.78rem; font-weight: 400; color: var(--text2); text-decoration: line-through; display: block; }
+    .prod-btn {
+      background: var(--accent); color: #fff; border: none; border-radius: 10px;
+      padding: 9px 18px; font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .prod-btn:hover { background: var(--accent2); transform: scale(1.03); }
+
+    /* ── HIDDEN (filter) ── */
+    .product-card.hidden { display: none; }
+
+    /* ── CATEGORY SECTION HEADERS ── */
+    .cat-header {
+      display: flex; align-items: center; gap: 16px;
+      margin: 48px 0 24px;
+    }
+    .cat-header:first-child { margin-top: 0; }
+    .cat-header h3 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--text1); }
+    .cat-header-line { flex: 1; height: 1px; background: var(--border); }
+
+    /* ── PROMO STRIP ── */
+    .promo-strip {
+      background: linear-gradient(90deg, var(--accent) 0%, #f07c40 100%);
+      color: #fff; border-radius: var(--radius);
+      padding: 32px 40px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      margin: 48px 0 0;
+      flex-wrap: wrap;
+    }
+    .promo-strip h3 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; }
+    .promo-strip p { font-size: 0.9rem; opacity: 0.85; margin-top: 4px; }
+    .btn-white {
+      background: #fff; color: var(--accent); border: none; border-radius: 10px;
+      padding: 12px 24px; font-size: 0.9rem; font-weight: 700;
+      cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .btn-white:hover { opacity: 0.9; }
+
+    /* ── FADE IN ── */
+    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text1); color: rgba(255,255,255,0.85);
+      padding: 60px 40px 30px;
+    }
+    .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; max-width: 1300px; margin: 0 auto 40px; }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } footer { padding: 40px 20px 24px; } }
+    .footer-brand p { font-size: 0.875rem; opacity: 0.6; line-height: 1.7; margin-top: 8px; }
+    .footer-socials { display: flex; gap: 8px; margin-top: 16px; }
+    .social-btn {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: rgba(255,255,255,0.1); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; text-decoration: none; transition: background 0.2s;
+    }
+    .social-btn:hover { background: var(--accent); }
+    .footer-col h5 { font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; opacity: 0.5; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul a { text-decoration: none; font-size: 0.875rem; color: rgba(255,255,255,0.7); transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--accent2); }
+    .footer-bottom {
+      max-width: 1300px; margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+      font-size: 0.8rem; opacity: 0.45;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="nav-brand">
+    <div class="nav-logo">S</div>
+    <span class="nav-name">Shaban <span>Electronics</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="deals.html">Deals</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="theme-btn" id="themeBtn">🌙</button>
+    <a href="contact.html"><button class="nav-cta">Get Quote</button></a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="products.html">Products</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="deals.html">Deals</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <span class="section-label">Our Full Range</span>
+  <h1>All Products</h1>
+  <p>Browse our complete collection of premium home appliances from the world's leading brands.</p>
+</div>
+
+<!-- FILTERS BAR -->
+<div class="filters-bar" id="filtersBar">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-cat="all">All</button>
+  <button class="filter-btn" data-cat="ac">Air Conditioners</button>
+  <button class="filter-btn" data-cat="fridge">Refrigerators</button>
+  <button class="filter-btn" data-cat="tv">LED / Smart TVs</button>
+  <button class="filter-btn" data-cat="washing">Washing Machines</button>
+  <button class="filter-btn" data-cat="kitchen">Kitchen Appliances</button>
+  <button class="filter-btn" data-cat="small">Small Appliances</button>
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search products…" />
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="section">
+  <p class="results-count" id="resultsCount">Showing <strong id="countNum">24</strong> products</p>
+
+  <div class="products-grid" id="productsGrid">
+
+    <!-- AIR CONDITIONERS -->
+    <div class="product-card fade-in" data-cat="ac" data-name="haier hsu-18hfc inverter ac 1.5 ton">
+      <div class="product-badge hot">Best Seller</div>
+      <div class="product-img">
+        <img src="https://umarelectronics.pk/wp-content/uploads/2024/10/Haier-1.5-Ton-HSU-18HFTCA-T3-Thunder-Inverter-Air-Conditioner-600x600-1.webp" alt="Haier Inverter AC" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Air Conditioners</span>
+        <h3 class="product-name">Haier HSU-18HFC 1.5 Ton Inverter AC</h3>
+        <p class="product-desc">Energy-saving DC inverter technology. Ideal for large rooms. Includes professional installation.</p>
+        <div class="product-meta">
+          <span class="product-tag">1.5 Ton</span>
+          <span class="product-tag">Inverter</span>
+          <span class="product-tag">Wi-Fi Ready</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 85,000<span>PKR 106,000</span></div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="ac" data-name="gree 1 ton inverter ac wifi">
+      <div class="product-badge">New Arrival</div>
+      <div class="product-img">
+        <img src="https://selectronics.com.pk/wp-content/uploads/2025/05/Gree-1.0-Ton-Inverter-Air-Conditioner-12PITH21W-T3.webp" alt="Gree AC" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Air Conditioners</span>
+        <h3 class="product-name">Gree GS-12PITH11W 1 Ton Inverter AC</h3>
+        <p class="product-desc">Compact and powerful. Perfect for bedrooms and small living rooms. Wi-Fi app control included.</p>
+        <div class="product-meta">
+          <span class="product-tag">1 Ton</span>
+          <span class="product-tag">Wi-Fi</span>
+          <span class="product-tag">Turbo Cool</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 68,000<span>PKR 77,000</span></div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="ac" data-name="dawlance 2 ton dc inverter ac plus">
+      <div class="product-img">
+        <img src="https://www.hkarimbuksh.com/cdn/shop/products/dawlance-electronics-dawlance-inverter-ac-1-5-ton-enercon-30-6993701535873_2000x.jpg?v=1630133288" alt="Dawlance AC" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Air Conditioners</span>
+        <h3 class="product-name">Dawlance Elegance+ 2 Ton DC Inverter</h3>
+        <p class="product-desc">Ultimate cooling for large halls. Self-cleaning filter, 5-star energy rating, ultra-quiet operation.</p>
+        <div class="product-meta">
+          <span class="product-tag">2 Ton</span>
+          <span class="product-tag">Self-Clean</span>
+          <span class="product-tag">5-Star</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 115,000</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="ac" data-name="orient 1.5 ton dc inverter ac arctic">
+      <div class="product-img">
+        <img src="https://www.hcsupermart.com/wp-content/uploads/2020/03/SupremeDCInverter_2000x_crop_center.webp" alt="Orient AC" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Air Conditioners</span>
+        <h3 class="product-name">Orient Arctic 1.5 Ton DC Inverter</h3>
+        <p class="product-desc">Fast cooling with 4D airflow technology. Antibacterial filter and health shield mode.</p>
+        <div class="product-meta">
+          <span class="product-tag">1.5 Ton</span>
+          <span class="product-tag">4D Airflow</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 78,500</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <!-- REFRIGERATORS -->
+    <div class="product-card fade-in" data-cat="fridge" data-name="dawlance 9170 signature refrigerator glass door no frost">
+      <div class="product-badge hot">Top Pick</div>
+      <div class="product-img">
+        <img src="https://www.alfatah.com.pk/wp-content/uploads/2024/05/Dawlance-20-CFT-Top-Mount-Refrigerator-91999WB-GD-Inverter-Avante-Red.webp" alt="Dawlance Fridge" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Refrigerators</span>
+        <h3 class="product-name">Dawlance 9170 Signature Refrigerator</h3>
+        <p class="product-desc">Premium glass door, no-frost technology, large capacity. Ideal for families of 4–6.</p>
+        <div class="product-meta">
+          <span class="product-tag">No-Frost</span>
+          <span class="product-tag">Glass Door</span>
+          <span class="product-tag">590 Litres</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 72,000<span>PKR 84,000</span></div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="fridge" data-name="haier double door refrigerator inverter hrf 306">
+      <div class="product-img">
+        <img src="https://sohailelectronics.com/wp-content/uploads/2025/09/Haier-No-Frost-Inverter-Refrigerator-HRF-488IFFB-300x300.jpg" alt="Haier Fridge" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Refrigerators</span>
+        <h3 class="product-name">Haier HRF-306 Inverter Refrigerator</h3>
+        <p class="product-desc">Twin inverter technology for energy savings. Fresh zone drawer and wide range cooling.</p>
+        <div class="product-meta">
+          <span class="product-tag">Inverter</span>
+          <span class="product-tag">306 Litres</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 65,000</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="fridge" data-name="pel arctic refrigerator no frost 330 litres">
+      <div class="product-img">
+        <img src="https://eshop.pel.com.pk/cdn/shop/files/PEL_Refrigerator_Glass_Door_Purple_700x.png?v=1767082347" alt="PEL Fridge" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Refrigerators</span>
+        <h3 class="product-name">PEL Arctic 330L No-Frost Refrigerator</h3>
+        <p class="product-desc">Reliable Pakistani brand with 7-year compressor warranty. Frost-free with vegetable crisper.</p>
+        <div class="product-meta">
+          <span class="product-tag">No-Frost</span>
+          <span class="product-tag">330 Litres</span>
+          <span class="product-tag">7yr Warranty</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 54,000</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <!-- LED / SMART TVs -->
+    <div class="product-card fade-in" data-cat="tv" data-name="samsung 55 4k qled smart tv">
+      <div class="product-badge hot">🔥 Hot Deal</div>
+      <div class="product-img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmbIIvIWQeQt2wRL8juWQRE46IddBJUrZJDQ&s" alt="Samsung QLED TV" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">LED / Smart TVs</span>
+        <h3 class="product-name">Samsung 55" 4K QLED Smart TV</h3>
+        <p class="product-desc">Quantum Dot display with 100% color volume. Built-in Netflix, YouTube, Smart Hub. 2-year warranty.</p>
+        <div class="product-meta">
+          <span class="product-tag">55 Inch</span>
+          <span class="product-tag">4K QLED</span>
+          <span class="product-tag">Smart TV</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 145,000<span>PKR 193,000</span></div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="tv" data-name="tcl 43 inch 4k smart android tv">
+      <div class="product-badge new">New</div>
+      <div class="product-img">
+        <img src="https://images.samsung.com/is/image/samsung/assets/latin_en/tvs/03-2025/2025-tvs-pcd-f03-line-up-01-mo.jpg?$720_N_JPG$" alt="TCL TV" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">LED / Smart TVs</span>
+        <h3 class="product-name">TCL 43" 4K Android Smart TV</h3>
+        <p class="product-desc">Android TV with Google Assistant. HDR10, Dolby Audio, built-in Chromecast. Budget-friendly 4K.</p>
+        <div class="product-meta">
+          <span class="product-tag">43 Inch</span>
+          <span class="product-tag">Android TV</span>
+          <span class="product-tag">HDR10</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 72,000</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="tv" data-name="hisense 65 inch 4k uhd smart tv">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1567690187548-f07b1d7bf5a9?w=600&q=80" alt="Hisense TV" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">LED / Smart TVs</span>
+        <h3 class="product-name">Hisense 65" 4K UHD Smart TV</h3>
+        <p class="product-desc">Large screen experience with Dolby Vision & ATMOS. Ultra-slim bezel design with VIDAA smart platform.</p>
+        <div class="product-meta">
+          <span class="product-tag">65 Inch</span>
+          <span class="product-tag">Dolby Vision</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 165,000</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <!-- WASHING MACHINES -->
+    <div class="product-card fade-in" data-cat="washing" data-name="samsung 8kg front load washing machine">
+      <div class="product-badge hot">Best Seller</div>
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=600&q=80" alt="Samsung Washing Machine" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Washing Machines</span>
+        <h3 class="product-name">Samsung 8KG Front Load Washing Machine</h3>
+        <p class="product-desc">Bubble wash technology, 15-min quick wash, smart control via app. 15 wash programs.</p>
+        <div class="product-meta">
+          <span class="product-tag">8 KG</span>
+          <span class="product-tag">Front Load</span>
+          <span class="product-tag">Smart Control</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 98,000<span>PKR 119,000</span></div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="washing" data-name="haier fully automatic top load washing machine 10kg">
+      <div class="product-img">
+        <img src="https://sohailelectronics.com/wp-content/uploads/2025/09/Haier-10kg-Top-Load-Automatic-Washing-Machine-HWM100-316S6.jpg" alt="Haier Washing Machine" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Washing Machines</span>
+        <h3 class="product-name">Haier HWM100-1678 10KG Fully Automatic</h3>
+        <p class="product-desc">Top-load with Pulsator wash, 8 wash programs, child lock, and transparent lid.</p>
+        <div class="product-meta">
+          <span class="product-tag">10 KG</span>
+          <span class="product-tag">Top Load</span>
+          <span class="product-tag">Auto</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 58,000</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="washing" data-name="dawlance twin tub semi automatic washing machine">
+      <div class="product-img">
+        <img src="https://www.almumtaz.com.pk/wp-content/uploads/2024/06/Dawlance-DW-6100-Single-Tub-Washer.webp" alt="Dawlance Washer" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Washing Machines</span>
+        <h3 class="product-name">Dawlance DW-6100 Semi-Automatic Twin Tub</h3>
+        <p class="product-desc">Durable twin-tub design with powerful 710W motor. Perfect for daily household use.</p>
+        <div class="product-meta">
+          <span class="product-tag">6 KG</span>
+          <span class="product-tag">Semi-Auto</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 28,000</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <!-- KITCHEN APPLIANCES -->
+    <div class="product-card fade-in" data-cat="kitchen" data-name="samsung microwave oven solo 23 litre">
+      <div class="product-img">
+        <img src="https://dam.which.co.uk/007e33ef-154d-40a3-b1b0-d3728ef19e36.jpg" alt="Microwave" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Kitchen Appliances</span>
+        <h3 class="product-name">Samsung MS23K3513AK Solo Microwave</h3>
+        <p class="product-desc">23-litre capacity, 800W power, 10 power levels. Ceramic enamel interior for easy cleaning.</p>
+        <div class="product-meta">
+          <span class="product-tag">23L</span>
+          <span class="product-tag">800W</span>
+          <span class="product-tag">Solo</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 18,500</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="kitchen" data-name="kitchen appliances bundle deal microwave blender kettle combo">
+      <div class="product-badge">Bundle</div>
+      <div class="product-img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2lP-dvaPTLThSICqRpWdoEXV7cgTEuNzifA&s" alt="Kitchen Bundle" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Kitchen Appliances</span>
+        <h3 class="product-name">Kitchen Appliances Bundle Pack</h3>
+        <p class="product-desc">Microwave + blender + electric kettle combo. Best value bundle — save big when you buy together.</p>
+        <div class="product-meta">
+          <span class="product-tag">Bundle</span>
+          <span class="product-tag">3 Items</span>
+          <span class="product-tag">Save 10%</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 18,000<span>PKR 20,000</span></div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="kitchen" data-name="orient cooking range 5 burner stove oven">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Cooking Range" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Kitchen Appliances</span>
+        <h3 class="product-name">Orient Aura 5-Burner Cooking Range</h3>
+        <p class="product-desc">Stainless steel finish, auto-ignition, large capacity oven, 5 Italian brass burners.</p>
+        <div class="product-meta">
+          <span class="product-tag">5 Burner</span>
+          <span class="product-tag">Auto-Ignition</span>
+          <span class="product-tag">Oven</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 52,000</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+   
+
+    <!-- SMALL APPLIANCES -->
+    <div class="product-card fade-in" data-cat="small" data-name="dyson v12 vacuum cleaner cordless">
+      <div class="product-badge new">Premium</div>
+      <div class="product-img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJB-ghqgKvUIjWD2_ok-iaDiUryNGxBCW1MA&s" alt="Vacuum Cleaner" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Small Appliances</span>
+        <h3 class="product-name">Philips PowerPro Cordless Vacuum</h3>
+        <p class="product-desc">Powerful suction with HEPA filter. Up to 60 min battery, flexi-nozzle for furniture.</p>
+        <div class="product-meta">
+          <span class="product-tag">Cordless</span>
+          <span class="product-tag">HEPA</span>
+          <span class="product-tag">60 Min</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 22,000</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="small" data-name="water dispenser hot and cold haier">
+      <div class="product-img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIpumgWNWaibdQoS7_NjqQrT_nuCeMR-K8mw&s" alt="Water Dispenser" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Small Appliances</span>
+        <h3 class="product-name">Haier HWD-3030 Water Dispenser</h3>
+        <p class="product-desc">Hot, cold & normal water. Stainless steel tank, child lock on hot tap. Fridge compartment included.</p>
+        <div class="product-meta">
+          <span class="product-tag">3-in-1</span>
+          <span class="product-tag">Fridge</span>
+          <span class="product-tag">Child Lock</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 16,500</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="small" data-name="room heater fan convector electric winter">
+      <div class="product-img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSGxLd9ogFRE0-BP_OF5p9pPXS5er9Y9N-AQ&s" alt="Heater" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Small Appliances</span>
+        <h3 class="product-name">Westpoint WF-5164 Fan Heater</h3>
+        <p class="product-desc">2000W rapid fan heater with thermostat. Safety tip-over switch, cool-touch housing.</p>
+        <div class="product-meta">
+          <span class="product-tag">2000W</span>
+          <span class="product-tag">Thermostat</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 5,200</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="small" data-name="air purifier hepa filter room home">
+      <div class="product-img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxHl3U5AeK_Y7fOJLCba99vFx2dik_6CJ8jw&s" alt="Air Purifier" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Small Appliances</span>
+        <h3 class="product-name">Philips AC2887 Air Purifier</h3>
+        <p class="product-desc">Removes 99.97% of airborne pollutants. 3-layer HEPA filter, real-time air quality display.</p>
+        <div class="product-meta">
+          <span class="product-tag">HEPA H13</span>
+          <span class="product-tag">Air Quality</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 35,000</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" data-cat="small" data-name="electric iron dry steam press philips">
+      <div class="product-img">
+        <img src="https://www.alfatah.com.pk/wp-content/uploads/2023/09/Philips-Steam-Iron-GC3929-60-600x514.webp" alt="Steam Iron" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <span class="product-category">Small Appliances</span>
+        <h3 class="product-name">Philips GC2996 Steam Iron</h3>
+        <p class="product-desc">2600W with 45g/min continuous steam. Optimal TEMP technology, non-stick soleplate.</p>
+        <div class="product-meta">
+          <span class="product-tag">2600W</span>
+          <span class="product-tag">Steam</span>
+          <span class="product-tag">Non-Stick</span>
+        </div>
+      </div>
+      <div class="product-footer">
+        <div class="product-price">PKR 4,800</div>
+        <a href="contact.html"><button class="prod-btn">Enquire →</button></a>
+      </div>
+    </div>
+
+  </div><!-- end .products-grid -->
+
+  <!-- PROMO STRIP -->
+  <div class="promo-strip fade-in">
+    <div>
+      <h3>💳 Easy Installment Plans Available</h3>
+      <p>Pay in easy monthly installments with 0% markup through Meezan Bank, HBL & other leading banks.</p>
+    </div>
+    <a href="contact.html"><button class="btn-white">Ask About Installments →</button></a>
+  </div>
+
+</div><!-- end .section -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <div class="nav-logo">S</div>
+        <span class="nav-name" style="color:#fff">Shaban <span>Electronics</span></span>
+      </div>
+      <p>Your trusted partner for home appliances in Rawalpindi.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">f</a>
+        <a href="#" class="social-btn">W</a>
+        <a href="#" class="social-btn">ig</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="products.html">All Products</a></li>
+        <li><a href="deals.html">Hot Deals</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Categories</h5>
+      <ul>
+        <li><a href="#">Air Conditioners</a></li>
+        <li><a href="#">Refrigerators</a></li>
+        <li><a href="#">Washing Machines</a></li>
+        <li><a href="#">LED / Smart TVs</a></li>
+        <li><a href="#">Kitchen Appliances</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#">📍 Rawalpindi, Pakistan</a></li>
+        <li><a href="tel:03000000000">📞 03XX-XXXXXXX</a></li>
+        <li><a href="contact.html">✉️ Send Message</a></li>
+        <li><a href="help.html">❓ Help Center</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Shaban Electronics, Rawalpindi. All rights reserved.</p>
+    <p>Owner: Shaban | SmartHome Appliances</p>
+  </div>
+</footer>
+
+<script>
+  // Theme toggle
+  const themeBtn = document.getElementById('themeBtn');
+  const html = document.documentElement;
+  themeBtn.addEventListener('click', () => {
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    themeBtn.textContent = isDark ? '🌙' : '☀️';
+  });
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+
+  // Fade-in on scroll
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 40);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // Filter + Search
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.product-card');
+  const searchInput = document.getElementById('searchInput');
+  const countNum = document.getElementById('countNum');
+
+  let activeCat = 'all';
+  let searchTerm = '';
+
+  function applyFilters() {
+    let count = 0;
+    cards.forEach(card => {
+      const cat = card.dataset.cat;
+      const name = (card.dataset.name || '').toLowerCase();
+      const matchCat = activeCat === 'all' || cat === activeCat;
+      const matchSearch = !searchTerm || name.includes(searchTerm);
+      if (matchCat && matchSearch) {
+        card.classList.remove('hidden');
+        count++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+    countNum.textContent = count;
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCat = btn.dataset.cat;
+      applyFilters();
+    });
+  });
+
+  searchInput.addEventListener('input', () => {
+    searchTerm = searchInput.value.trim().toLowerCase();
+    applyFilters();
+  });
+</script>
+</body>
+</html>
