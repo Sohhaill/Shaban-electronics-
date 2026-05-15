@@ -6,98 +6,8 @@
   <title>Products – Shaban Electronics</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #f5f3ef;
-      --bg2: #eceae4;
-      --surface: #ffffff;
-      --border: #dedad2;
-      --text1: #1a1714;
-      --text2: #6b6560;
-      --accent: #d4410a;
-      --accent2: #f26522;
-      --accent-light: #fdf0ea;
-      --radius: 16px;
-      --shadow: 0 4px 24px rgba(26,23,20,0.08);
-      --shadow-hover: 0 12px 40px rgba(26,23,20,0.14);
-    }
-    [data-theme="dark"] {
-      --bg: #141210;
-      --bg2: #1e1b18;
-      --surface: #242018;
-      --border: #332f28;
-      --text1: #f0ede8;
-      --text2: #9e9890;
-      --accent: #f26522;
-      --accent2: #ff8c42;
-      --accent-light: #2a1c10;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text1);
-      min-height: 100vh;
-    }
-
-    /* ── NAVBAR ── */
-    .navbar {
-      position: sticky; top: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 40px; height: 68px;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo {
-      width: 36px; height: 36px; border-radius: 10px;
-      background: var(--accent); color: #fff;
-      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .nav-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--text1); }
-    .nav-name span { color: var(--accent); }
-    .nav-links { display: flex; gap: 4px; list-style: none; }
-    .nav-links a {
-      text-decoration: none; font-size: 0.875rem; font-weight: 500;
-      color: var(--text2); padding: 6px 14px; border-radius: 8px;
-      transition: all 0.2s;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--accent); background: var(--accent-light); }
-    .nav-actions { display: flex; gap: 10px; align-items: center; }
-    .theme-btn {
-      background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
-      padding: 6px 10px; cursor: pointer; font-size: 1rem; color: var(--text1);
-    }
-    .nav-cta {
-      background: var(--accent); color: #fff; border: none; border-radius: 10px;
-      padding: 8px 18px; font-size: 0.875rem; font-weight: 600;
-      cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s;
-    }
-    .nav-cta:hover { background: var(--accent2); }
-    .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
-    .hamburger span { width: 22px; height: 2px; background: var(--text1); border-radius: 2px; display: block; }
-    .mobile-menu {
-      display: none; flex-direction: column;
-      background: var(--surface); border-bottom: 1px solid var(--border);
-      padding: 16px 24px; gap: 4px;
-    }
-    .mobile-menu a {
-      text-decoration: none; font-size: 0.95rem; font-weight: 500;
-      color: var(--text2); padding: 10px 14px; border-radius: 8px;
-      transition: all 0.2s;
-    }
-    .mobile-menu a:hover { color: var(--accent); background: var(--accent-light); }
-    .mobile-menu.open { display: flex; }
-    @media (max-width: 900px) {
-      .nav-links, .nav-actions { display: none; }
-      .hamburger { display: flex; }
-      .navbar { padding: 0 20px; }
-    }
-
     /* ── PAGE HERO ── */
     .page-hero {
       background: linear-gradient(135deg, var(--text1) 0%, #3d2d1a 100%);
@@ -298,21 +208,21 @@
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-  <a href="../index.html" class="nav-brand">
+  <div class="nav-brand">
     <div class="nav-logo">S</div>
     <span class="nav-name">Shaban <span>Electronics</span></span>
-  </a>
+  </div>
   <ul class="nav-links">
     <li><a href="../index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="services.html">Services</a></li>
-    <li><a href="products.html" class="active">Products</a></li>
     <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="Products.html">Products</a></li>
+    <li><a href="products.html"  class="active">Products</a></li>
+    <li><a href="help.html">Help</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-actions">
-    <button class="theme-btn" id="themeBtn">🌙</button>
+    <button class="theme-btn" onclick="toggleTheme()">🌙</button>
     <a href="contact.html"><button class="nav-cta">Get Quote</button></a>
   </div>
   <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
@@ -321,11 +231,12 @@
   <a href="../index.html">Home</a>
   <a href="about.html">About</a>
   <a href="services.html">Services</a>
-  <a href="products.html">Products</a>
   <a href="gallery.html">Gallery</a>
-  <a href="Products.html">Products</a>
+  <a href="products.html">Products</a>
+  <a href="help.html">Help</a>
   <a href="contact.html">Contact</a>
 </div>
+
 
 <!-- PAGE HERO -->
 <div class="page-hero">
@@ -821,7 +732,7 @@
         <li><a href="about.html">About Us</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="products.html">All Products</a></li>
-        <li><a href="Products.html">Hot Products</a></li>
+        <li><a href="deals.html">Hot Deals</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -851,71 +762,50 @@
 </footer>
 
 <script>
-  // Theme toggle
-  const themeBtn = document.getElementById('themeBtn');
-  const html = document.documentElement;
-  themeBtn.addEventListener('click', () => {
-    const isDark = html.getAttribute('data-theme') === 'dark';
-    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    themeBtn.textContent = isDark ? '🌙' : '☀️';
-  });
+  // Filter + Search (products page specific)
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.product-card');
+    const searchInput = document.getElementById('searchInput');
+    const countNum = document.getElementById('countNum');
 
-  // Hamburger
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    let activeCat = 'all';
+    let searchTerm = '';
 
-  // Fade-in on scroll
-  const fadeEls = document.querySelectorAll('.fade-in');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 40);
-        observer.unobserve(e.target);
-      }
+    function applyFilters() {
+      let count = 0;
+      cards.forEach(card => {
+        const cat = card.dataset.cat;
+        const name = (card.dataset.name || '').toLowerCase();
+        const matchCat = activeCat === 'all' || cat === activeCat;
+        const matchSearch = !searchTerm || name.includes(searchTerm);
+        if (matchCat && matchSearch) {
+          card.classList.remove('hidden');
+          count++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      if (countNum) countNum.textContent = count;
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCat = btn.dataset.cat;
+        applyFilters();
+      });
     });
-  }, { threshold: 0.08 });
-  fadeEls.forEach(el => observer.observe(el));
 
-  // Filter + Search
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.product-card');
-  const searchInput = document.getElementById('searchInput');
-  const countNum = document.getElementById('countNum');
-
-  let activeCat = 'all';
-  let searchTerm = '';
-
-  function applyFilters() {
-    let count = 0;
-    cards.forEach(card => {
-      const cat = card.dataset.cat;
-      const name = (card.dataset.name || '').toLowerCase();
-      const matchCat = activeCat === 'all' || cat === activeCat;
-      const matchSearch = !searchTerm || name.includes(searchTerm);
-      if (matchCat && matchSearch) {
-        card.classList.remove('hidden');
-        count++;
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-    countNum.textContent = count;
-  }
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeCat = btn.dataset.cat;
-      applyFilters();
-    });
-  });
-
-  searchInput.addEventListener('input', () => {
-    searchTerm = searchInput.value.trim().toLowerCase();
-    applyFilters();
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        searchTerm = searchInput.value.trim().toLowerCase();
+        applyFilters();
+      });
+    }
   });
 </script>
+<script src="../js/main.js"></script>
 </body>
 </html>
